@@ -162,3 +162,38 @@
 //          [4, 3, 6, 4, 1],
 //          [8, 7, 3, 5, 2]];
 // console.log(solution(arr));
+
+// var x = 'global';
+
+// function foo(){
+//     var x = 'local';
+//     console.log(x);
+// }
+// foo();
+
+// console.log(x);
+// function solution(s){
+//     let answer="YES";
+//     s = s.toLowerCase();
+//     let n = Math.floor(s.length);
+//     for(var i = 0; i<n; i++){
+//         if(s[i] !== s[n-i-1]) return answer = "NO";
+//     }
+//     return answer;
+// }
+
+// let str="gooG";
+//console.log(solution(str));
+function solution(s){
+    let answer="YES";
+    s = s.toLowerCase().replace(/[^a-z]/g,''); // 소문자로 변환 한 뒤 정규표현식으로 대체
+    if(s !== s.split('').reverse().join('')){
+        console.log(s);
+        console.log(s.split('').reverse().join(''));
+        return "No";
+    }
+    return answer;
+}
+
+let str="found7, time: study; Yduts; emit, 7Dnuof";
+console.log(solution(str));
