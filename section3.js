@@ -40,26 +40,53 @@
 // console.log(solution(str));
 
 // 가장 짧은 문자거리
-function solution(s, t){
-    let answer=[];
-    let n = s.length;
-    answer = Array.from({length:n}, ()=>0);
-    let idx = [];
+// function solution(s, t){
+//     let answer=[];
+//     let cnt = 0;
 
-    s.split('').forEach((e, i) => {
-        if(e === t){     
-            answer[i-1] = 1;
-            answer[i+1] = 1;
+//     for(let i=0; i<s.length; i++){
+//         if(s[i] === t){
+//             answer.push(0);
+//             cnt = 0;
+//         } else {
+//             cnt++;
+//             answer.push(cnt);
+//         }
+//     }    
+//     cnt = 0;
+//     for(let j=s.length-1; j>=0; j--){
+//         if(answer[j] !== 0){
+//             cnt++;
+//             answer[j] = Math.min(cnt, answer[j]);
+//         }else if(answer[j] === 0){
+//             cnt = 0;
+//         }
+//     }
+//     console.log(answer);
+//     return answer;
+// }
+// let str="teachermode";
+// console.log(solution(str, 'e'));
+// 문자열 압축
+function solution(s){
+    let answer="";
+    let cnt = 1;
+
+
+    for(let i=0; i<s.length; i++){
+        if(s[i] === s[i+1]){
+            cnt++;
         }
-        return answer;
-    });
-
-    for(let i=0; i<answer.length; i++){
-        if(answer[i]){
-            
+        else{
+            answer += s[i];
+            if(cnt !== 1){
+                answer += cnt;  
+                cnt = 1;
+            }
         }
     }
     return answer;
 }
-let str="teachermode";
-console.log(solution(str, 'e'));
+
+let str="KKHSSSSSSSE";
+console.log(solution(str));
