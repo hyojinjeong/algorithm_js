@@ -20,21 +20,53 @@
 // console.log(solution(a));
 
 // 괄호 문자 제거
-function solution(s){  
-  let answer;
-  let stack=[];
+// function solution(s){  
+//   let answer;
+//   let stack=[];
 
-  for(let x of s){
-    console.log(stack);
-    if(x === ')'){
-      while(stack.pop() !== '('); // stack 구조는 선입후출임에 유의 할 것
-    } else {
-      stack.push(x);
+//   for(let x of s){
+//     console.log(stack);
+//     if(x === ')'){
+//       while(stack.pop() !== '('); // stack 구조는 선입후출임에 유의 할 것
+//     } else {
+//       stack.push(x);
+//     }
+//   }
+//   answer = stack.join(''); 
+//   return answer;
+// }
+
+// let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+// console.log(solution(str));
+
+// 크레인 인형뽑기
+function solution(board, moves){
+  let answer=0;
+  let stack=[];     
+
+  moves.forEach(pos => {
+    for(let i=0; i<board.length; i++){
+      if(board[i][pos-1] !== 0){
+        let tmp = board[i][pos-1];
+        board[i][pos-1] = 0;
+        if(tmp === stack[stack.length-1]){
+          stack.pop();
+          answer += 2;
+        } 
+        else stack.push(tmp);
+        break;        
+      }
     }
-  }
-  answer = stack.join(''); 
+  })
+  
   return answer;
 }
 
-let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
-console.log(solution(str));
+let a=[[0,0,0,0,0],
+     [0,0,1,0,3],
+     [0,2,5,0,1],
+     [4,2,4,4,2],
+     [3,5,1,3,1]];
+
+let b=[1, 5, 3, 5, 1, 2, 1, 4];
+console.log(solution(a, b));
