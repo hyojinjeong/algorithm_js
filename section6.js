@@ -18,3 +18,23 @@
 
 // let a="(()(()))(()";
 // console.log(solution(a));
+
+// 괄호 문자 제거
+function solution(s){  
+  let answer;
+  let stack=[];
+
+  for(let x of s){
+    console.log(stack);
+    if(x === ')'){
+      while(stack.pop() !== '('); // stack 구조는 선입후출임에 유의 할 것
+    } else {
+      stack.push(x);
+    }
+  }
+  answer = stack.join(''); 
+  return answer;
+}
+
+let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+console.log(solution(str));
