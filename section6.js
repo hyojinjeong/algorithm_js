@@ -40,33 +40,88 @@
 // console.log(solution(str));
 
 // 크레인 인형뽑기
-function solution(board, moves){
-  let answer=0;
-  let stack=[];     
+// function solution(board, moves){
+//   let answer=0;
+//   let stack=[];     
 
-  moves.forEach(pos => {
-    for(let i=0; i<board.length; i++){
-      if(board[i][pos-1] !== 0){
-        let tmp = board[i][pos-1];
-        board[i][pos-1] = 0;
-        if(tmp === stack[stack.length-1]){
-          stack.pop();
-          answer += 2;
-        } 
-        else stack.push(tmp);
-        break;        
+//   moves.forEach(pos => {
+//     for(let i=0; i<board.length; i++){
+//       if(board[i][pos-1] !== 0){
+//         let tmp = board[i][pos-1];
+//         board[i][pos-1] = 0;
+//         if(tmp === stack[stack.length-1]){
+//           stack.pop();
+//           answer += 2;
+//         } 
+//         else stack.push(tmp);
+//         break;        
+//       }
+//     }
+//   })
+
+//   return answer;
+// }
+
+// let a=[[0,0,0,0,0],
+//      [0,0,1,0,3],
+//      [0,2,5,0,1],
+//      [4,2,4,4,2],
+//      [3,5,1,3,1]];
+
+// let b=[1, 5, 3, 5, 1, 2, 1, 4];
+// console.log(solution(a, b));
+
+// 후위식 연산
+// function solution(str){
+//   let answer = 0;
+//   let stack = [];
+
+//   for(let x of str){
+//     if(!isNaN(Number(x))){
+//       stack.push(Number(x));
+//     } else {
+//       let tmp2 = stack.pop();
+//       let tmp1 = stack.pop();      
+
+//       switch(x){
+//        case '+': 
+//         stack.push((tmp1 + tmp2)); 
+//         break;
+//         case '-': 
+//         stack.push((tmp1 - tmp2)); 
+//         break;
+//         case '*': 
+//         stack.push((tmp1 * tmp2)); 
+//         break;
+//         case '/': 
+//         stack.push((tmp1 / tmp2)); 
+//         break;                        
+//       }
+//     }
+//   }
+//   answer = stack.pop();
+//   return answer;
+// }
+// let str = '352+*9-'
+// console.log(solution(str));
+
+function solution(s){  
+  let answer;
+  let stack=[];
+  for(let x of s){
+      if(!isNaN(x)) stack.push(Number(x));
+      else{
+          let rt=stack.pop();
+          let lt=stack.pop();
+          if(x==='+') stack.push(lt+rt);
+          else if(x==='-') stack.push(lt-rt);
+          else if(x==='*') stack.push(lt*rt);
+          else if(x==='/') stack.push(lt/rt);
       }
-    }
-  })
-  
+  }
+  answer=stack[0];
   return answer;
 }
 
-let a=[[0,0,0,0,0],
-     [0,0,1,0,3],
-     [0,2,5,0,1],
-     [4,2,4,4,2],
-     [3,5,1,3,1]];
-
-let b=[1, 5, 3, 5, 1, 2, 1, 4];
-console.log(solution(a, b));
+let str="352+*9-";
+console.log(solution(str));
