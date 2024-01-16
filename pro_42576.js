@@ -48,9 +48,24 @@
 //     }
 //   }
 // }
-function solution(phone_book) {
-  phone_book.sort();
-  return !phone_book.some((v, i) => phone_book[i + 1]?.indexOf(v) === 0)
+// function solution(phone_book) {
+//   phone_book.sort();
+//   return !phone_book.some((v, i) => phone_book[i + 1]?.indexOf(v) === 0)
+//   return result;
+// }
+// console.log(solution(['a', 'b', 'a', 'a'], ['a', 'a', 'a']));
+
+function solution(clothes) {
+  let result = 1;
+  let map = new Map();
+
+  clothes.forEach(e => map.set(e[1], (map.get(e[1]) || 0) + 1));
+  for (const [key, value] of map) {
+    result *= (value + 1);
+  }
+  result = result - 1;
   return result;
 }
-console.log(solution(['a', 'b', 'a', 'a'], ['a', 'a', 'a']));
+
+console.log(solution([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
+
