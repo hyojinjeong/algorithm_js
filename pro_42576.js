@@ -55,17 +55,25 @@
 // }
 // console.log(solution(['a', 'b', 'a', 'a'], ['a', 'a', 'a']));
 
-function solution(clothes) {
-  let result = 1;
-  let map = new Map();
+// function solution(clothes) {
+//   let result = 1;
+//   let map = new Map();
 
-  clothes.forEach(e => map.set(e[1], (map.get(e[1]) || 0) + 1));
-  for (const [key, value] of map) {
-    result *= (value + 1);
+//   clothes.forEach(e => map.set(e[1], (map.get(e[1]) || 0) + 1));
+//   for (const [key, value] of map) {
+//     result *= (value + 1);
+//   }
+//   result = result - 1;
+//   return result;
+// }
+
+// console.log(solution([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
+function solution(arr) {
+  let answer = [arr[0]];
+  for (let i = 1; i < arr.length; i++) {
+    if (answer[answer.length - 1] !== arr[i]) {
+      answer.push(arr[i])
+    }
   }
-  result = result - 1;
-  return result;
+  return answer;
 }
-
-console.log(solution([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
-
